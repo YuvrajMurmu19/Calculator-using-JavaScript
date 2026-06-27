@@ -5,6 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator using JavaScript</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function appendValue(value){
+            const display = document.getElementById("display")
+            if(display.value==="Error"){
+                display.value="";
+            }
+            display.value += value;
+        }
+        function calculate(){
+                  const display = document.getElementById("display");
+                    //  i have used this try catch block so that i can catch errors and show it to users that they have typed something invalid
+
+                    try {
+                        // i have applied if condition so that when user clicks equal to and error is there in display field 
+                        // i change the display field to show nothing
+                        if(display.value ==='Error'){
+
+                            display.value = '';
+                            return;
+                        }
+                        display.value = eval(display.value);
+                    }catch(error){
+                        display.value = 'Error';
+                        console.error(error);
+                    }
+        }
+
+        function deleteLast(){
+            const display = document.getElementById("display");
+            if(display.value === "Error"){
+                display.value = "";
+                return;
+            }
+            display.value = display.value.slice(0,-1);
+        }
+    </script>
 </head>
 <body>
     
@@ -12,36 +48,36 @@
         <div class="calculator">
             <form>
                 <div class="display">
-                    <input type="text" name="display" readonly>
+                    <input type="text" id="display" readonly>
                 </div>
                 <div>
                     <input type="button" value="AC" onclick="display.value = '' "  class="operator">
-                    <input type="button" value="DE" onclick="display.value = display.value.toString().slice(0,-1) " class="operator">
-                    <input type="button" value="." onclick="display.value += '.' " class="operator">
-                    <input type="button" value="/" onclick="display.value += '/' " class="operator">
+                    <input type="button" value="DE" onclick="deleteLast()" class="operator">
+                    <input type="button" value="." onclick="appendValue('.')" class="operator">
+                    <input type="button" value="/" onclick="appendValue('/')" class="operator">
                 </div>
                 <div>
-                    <input type="button" value="7" onclick="display.value += '7' ">
-                    <input type="button" value="8" onclick="display.value += '8' ">
-                    <input type="button" value="9" onclick="display.value += '9' ">
-                    <input type="button" value="*" onclick="display.value += '*' " class="operator">
+                    <input type="button" value="7" onclick="appendValue('7')">
+                    <input type="button" value="8" onclick="appendValue('8')">
+                    <input type="button" value="9" onclick="appendValue('9')">
+                    <input type="button" value="*" onclick="appendValue('*')" class="operator">
                 </div>
                 <div>
-                    <input type="button" value="4" onclick="display.value += '4' ">
-                    <input type="button" value="5" onclick="display.value += '5' ">
-                    <input type="button" value="6" onclick="display.value += '6' ">
-                    <input type="button" value="-" onclick="display.value += '-' " class="operator">
+                    <input type="button" value="4" onclick="appendValue('4')">
+                    <input type="button" value="5" onclick="appendValue('5')">
+                    <input type="button" value="6" onclick="appendValue('6')">
+                    <input type="button" value="-" onclick="appendValue('-')" class="operator">
                 </div>
                 <div>
-                    <input type="button" value="1" onclick="display.value += '1' ">
-                    <input type="button" value="2" onclick="display.value += '2' ">
-                    <input type="button" value="3" onclick="display.value += '3' ">
-                    <input type="button" value="+" onclick="display.value += '+' " class="operator">
+                    <input type="button" value="1" onclick="appendValue('1')">
+                    <input type="button" value="2" onclick="appendValue('2')">
+                    <input type="button" value="3" onclick="appendValue('3')">
+                    <input type="button" value="+" onclick="appendValue('+')" class="operator">
                 </div>
                 <div>
-                    <input type="button" value="00" onclick="display.value += '00' ">
-                    <input type="button" value="0" onclick="display.value += '0' ">
-                    <input type="button" value="=" onclick="display.value= eval(display.value)" class="equal operator" > 
+                    <input type="button" value="00" onclick="appendValue('00')">
+                    <input type="button" value="0" onclick="appendValue('0')">
+                    <input type="button" value="=" onclick="calculate()" class="equal operator" > 
                     
                 </div>
             </form>
