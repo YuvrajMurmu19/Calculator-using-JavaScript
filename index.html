@@ -6,46 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator using JavaScript</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js"></script>
 </head>
+<script src="script.js"></script>
 
 <body>
 
     <div class="container">
+        <!-- this is the calculator div inside it there will be 2 divs that will indicate standard and scientific calculator -->
         <div class="calculator">
             <form>
                 <div class="display">
                     <input type="text" id="display" readonly>
                 </div>
-                <div>
-                    <input type="button" value="AC" onclick="display.value = '' " class="operator">
-                    <input type="button" value="DE" onclick="deleteLast()" class="operator">
-                    <input type="button" value="." onclick="appendValue('.')" class="operator">
-                    <input type="button" value="/" onclick="appendValue('/')" class="operator">
-                </div>
-                <div>
-                    <input type="button" value="7" onclick="appendValue('7')">
-                    <input type="button" value="8" onclick="appendValue('8')">
-                    <input type="button" value="9" onclick="appendValue('9')">
-                    <input type="button" value="*" onclick="appendValue('*')" class="operator">
-                </div>
-                <div>
-                    <input type="button" value="4" onclick="appendValue('4')">
-                    <input type="button" value="5" onclick="appendValue('5')">
-                    <input type="button" value="6" onclick="appendValue('6')">
-                    <input type="button" value="-" onclick="appendValue('-')" class="operator">
-                </div>
-                <div>
-                    <input type="button" value="1" onclick="appendValue('1')">
-                    <input type="button" value="2" onclick="appendValue('2')">
-                    <input type="button" value="3" onclick="appendValue('3')">
-                    <input type="button" value="+" onclick="appendValue('+')" class="operator">
-                </div>
-                <div>
-                    <input type="button" value="00" onclick="appendValue('00')">
-                    <input type="button" value="0" onclick="appendValue('0')">
-                    <input type="button" value="=" onclick="calculate()" class="equal operator">
+                <div class="calculator-body">
+                    <div class="standard">
+                        <div>
+                            <input type="button" value="AC" onclick="display.value = '' " class="operator">
+                            <input type="button" value="DE" onclick="deleteLast()" class="operator">
+                            <input type="button" value="." onclick="appendValue('.')" class="operator">
+                            <input type="button" value="/" onclick="appendValue('/')" class="operator">
+                        </div>
+                        <div>
+                            <input type="button" value="7" onclick="appendValue('7')">
+                            <input type="button" value="8" onclick="appendValue('8')">
+                            <input type="button" value="9" onclick="appendValue('9')">
+                            <input type="button" value="*" onclick="appendValue('*')" class="operator">
+                        </div>
+                        <div>
+                            <input type="button" value="4" onclick="appendValue('4')">
+                            <input type="button" value="5" onclick="appendValue('5')">
+                            <input type="button" value="6" onclick="appendValue('6')">
+                            <input type="button" value="-" onclick="appendValue('-')" class="operator">
+                        </div>
+                        <div>
+                            <input type="button" value="1" onclick="appendValue('1')">
+                            <input type="button" value="2" onclick="appendValue('2')">
+                            <input type="button" value="3" onclick="appendValue('3')">
+                            <input type="button" value="+" onclick="appendValue('+')" class="operator">
+                        </div>
+                        <div>
+                            <input type="button" id="toggle-mode" value="SCI" onclick="toggleScientific()" class="operator">
+                            <input type="button" value="0" onclick="appendValue('0')">
+                            <input type="button" value="=" onclick="calculate()" class="equal operator">
 
+                        </div>
+                    </div>
+                    <div class="scientific-panel">
+                       <!-- all the scientific buttons will go here  -->
+                        <div>
+                            <input type="button" value="sin" onclick="sin()">
+                            <input type="button" value="cos" onclick="cos()">
+                            <input type="button" value="tan" onclick="tan()">
+                            <input type="button" value="log" onclick="log()">
+                        </div>
+                        <div>
+                              <input type="button" value="ln" onclick="ln()">
+                              <input type="button" value="√" onclick="sqrt()">
+                              <input type="button" value="π" onclick="insertPi()">
+                              <input type="button" value="e" onclick="insertE()">
+                        </div>
+                        <div>
+                              <input type="button" value="(" onclick="insertOpenBracket()">
+                              <input type="button" value=")" onclick="insertCloseBracket()">
+                              
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>

@@ -17,8 +17,15 @@
 .calculator {
     background: #1e293b;
     padding: 20px;
+    min-height: 570px;
+    height:auto;
+    width:fit-content;
+    max-width:100%;
     border-radius: 18px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+    display:flex;
+    flex-direction: column;
+    transition: all 0.4s ease;
 }
 
 .calculator form input {
@@ -60,6 +67,7 @@ form .display input {
     background: #0f172a;
     color: #ffffff;
     padding-right: 15px;
+    overflow-x: auto;
 }
 
 form input.equal {
@@ -74,4 +82,38 @@ form input.equal:hover {
 
 form input.operator {
     color: #38bdf8;
+}
+
+.calculator-body{
+    display:flex;
+    align-items: flex-start;
+    gap:20px;
+    max-width: 100%;
+}
+
+.standard{
+    display: block;
+}
+.scientific-panel{
+    width:0;
+    opacity: 0;
+    overflow: hidden;
+    margin-left:0;
+    transition: all 0.4s ease;
+    flex-shrink: 0;
+}
+
+.calculator.scientific .scientific-panel{
+    width:360px;
+    opacity: 1;
+    margin-left: 20px;
+}
+.scientific-panel div {
+    display:grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 10px;
+}
+.scientific-panel input{
+    width:100%;
+    margin:0;
 }
