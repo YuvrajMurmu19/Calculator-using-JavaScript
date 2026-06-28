@@ -1,3 +1,6 @@
+//this is to store the history of the calculations
+let calculationHistory = [];
+
 function appendValue(value) {
     const display = document.getElementById("display")
     if (display.value === "Error") {
@@ -19,7 +22,10 @@ function calculate() {
             return;
         }
 
+        
+
         let expr = display.value;
+        let originalExpr = expr
         
         expr = expr
             .replaceAll("sin", "Math.sin")
@@ -32,12 +38,46 @@ function calculate() {
          
             
          expr = expr.replace(/\be\b/g, "Math.E");
+        
+         //modifying to store history
+        let result = eval(expr);
+        result = formatResult(result);
 
-        display.value = eval(expr);
+        calculationHistory.push(originalExpr + " = " + result);
+        display.value = result;
+        renderHistory();
+
     } catch (error) {
         display.value = 'Error';
         console.error(error);
     }
+}
+function formatResult(num) {
+    return Number(num.toFixed(10)).toString();
+}
+
+// adding toggle history function
+function toggleHistory(){
+    const panel = document.getElementById("history-panel");
+
+    if(panel.style.display === "block"){
+        panel.style.display = "none";
+    }else{
+        panel.style.display="block";
+        renderHistory();
+    }
+}
+//rendering the hsitory
+function renderHistory(){
+    const list = document.getElementById("history-list");
+    list.innerHTML = "";
+
+    calculationHistory.slice().reverse().forEach(item =>{
+        const div = document.createElement("div");
+        div.className = "history-item";
+        div.textContent = item;
+        list.appendChild(div);
+    })
 }
 
 function deleteLast() {
@@ -94,4 +134,11 @@ function insertOpenBracket() {
 }
 function insertCloseBracket() {
     appendValue(")");
+}
+
+function power() {
+    appendValue("**");
+}
+function percent() {
+    appendValue("/100");
 }
